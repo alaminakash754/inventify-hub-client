@@ -8,6 +8,9 @@ import Login from "../Pages/Login/Login";
 import SignUp from "../Pages/SignUp/SignUp";
 import PrivateRoute from "./PrivateRoute";
 import CreateStore from "../Pages/CreateStore/CreateStore";
+import Dashboard from "../Layout/Dashboard";
+import ManagerCart from "../Pages/Dashboard/ManagerCart/ManagerCart";
+import AllUsers from "../Pages/Dashboard/AllUsers/AllUsers";
 
   export const router = createBrowserRouter([
     {
@@ -33,4 +36,19 @@ import CreateStore from "../Pages/CreateStore/CreateStore";
         }
       ]
     },
+    {
+      path:'dashboard',
+      element: <PrivateRoute><Dashboard></Dashboard></PrivateRoute>,
+      children:[
+        {
+          path: 'product',
+          element: <ManagerCart></ManagerCart>
+        },
+        // admin routes 
+        {
+          path: 'users',
+          element: <AllUsers></AllUsers>
+        }
+      ]
+    }
   ]);

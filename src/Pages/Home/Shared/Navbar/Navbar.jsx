@@ -32,9 +32,11 @@ const Navbar = () => {
     }
     const navLinks = <>
         <li className="text-yellow-600 font-semibold"><Link to='/'>Home</Link></li>
-        <li className="text-yellow-600 font-semibold"><Link to='/createStore'>Create Store</Link></li>
         <li className="text-yellow-600 font-semibold"><Link to='/demo'>Watch Demo</Link></li>
-        <li className="text-yellow-600 font-semibold"><Link to='/login'>Login</Link></li>
+        <li className="text-yellow-600 font-semibold"><Link to='/signup'>Sign Up</Link></li>
+        <li className="text-yellow-600 font-semibold"><Link to='/createStore'>Create Store</Link></li>
+        
+        {user && <li className="text-yellow-600 font-semibold"><Link to='/dashboard/product'>Dashboard</Link></li>}
     </>
     return (
         <>
@@ -89,7 +91,7 @@ const Navbar = () => {
 
                             </>
                             :
-                            <Link to='/login'><button className="btn btn-sm">Login</button></Link>
+                            <Link to='/login'><button className="btn btn-sm text-yellow-600">Login</button></Link>
                     }
 
 
