@@ -2,11 +2,12 @@ import { Link } from "react-router-dom";
 import logo from '../../../../assets/logo.jpg'
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../../../Providers/AuthProviders";
+import useAdmin from "../../../../Hooks/useAdmin";
 
 
 const Navbar = () => {
     const { user, logOut } = useContext(AuthContext);
-
+    const [isAdmin] = useAdmin();
     const [theme, setTheme] = useState(localStorage.getItem('theme') ? localStorage.getItem('theme') : 'light');
     const handleToggle = e => {
         if (e.target.checked) {
@@ -36,7 +37,12 @@ const Navbar = () => {
         <li className="text-yellow-600 font-semibold"><Link to='/signup'>Sign Up</Link></li>
         <li className="text-yellow-600 font-semibold"><Link to='/createStore'>Create Store</Link></li>
         
-        {user && <li className="text-yellow-600 font-semibold"><Link to='/dashboard/product'>Dashboard</Link></li>}
+        {
+            user && isAdmin && <li className="text-yellow-600 font-semibold"><Link to='/dashboard/adminHome'>Dashboard</Link></li>
+        }
+        {
+            user && !isAdmin && <li className="text-yellow-600 font-semibold"><Link to='/dashboard/userHome'>Dashboard</Link></li>
+        }
     </>
     return (
         <>

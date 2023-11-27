@@ -6,13 +6,17 @@ import useAuth from "../Hooks/useAuth";
 import { RiLogoutCircleRFill } from "react-icons/ri";
 import { Helmet } from "react-helmet-async";
 import { FcSalesPerformance } from "react-icons/fc";
+import useAdmin from "../Hooks/useAdmin";
 
 
 const Dashboard = () => {
     <Helmet>Inventify-Hub | Dashboard</Helmet>
+
     const { logOut } = useAuth();
-    const isAdmin = true;
+    const [isAdmin] = useAdmin();
     const navigate = useNavigate();
+
+
     const handleSignOut = () => {
         logOut()
             .then(() => {
