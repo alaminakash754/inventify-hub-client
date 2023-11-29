@@ -12,7 +12,7 @@ const MotionSpring = () => {
     
     return (
         <div>
-            <animated.div style={{
+            {/* <animated.div style={{
                 ...spring,
                 width: '100px',
                 height: '100px',
@@ -20,7 +20,7 @@ const MotionSpring = () => {
                 borderRadius: '50%',
 
 
-            }}></animated.div>
+            }}></animated.div> */}
         </div>
     );
 };

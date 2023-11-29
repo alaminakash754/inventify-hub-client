@@ -10,7 +10,7 @@ import useAdmin from "../Hooks/useAdmin";
 
 
 const Dashboard = () => {
-    <Helmet>Inventify-Hub | Dashboard</Helmet>
+    // <Helmet>Inventify-Hub | Dashboard</Helmet>
 
     const { logOut } = useAuth();
     const [isAdmin] = useAdmin();
