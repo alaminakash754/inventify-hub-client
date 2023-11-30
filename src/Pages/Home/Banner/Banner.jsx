@@ -12,7 +12,7 @@ const Banner = () => {
                     <TypeWriterEffect
                         textStyle={{
                             fontFamily: 'Red Hat Display',
-                            color: 'gray',
+                            color: 'orange',
                             fontWeight: 400,
                             textAlign: 'justify',
                             fontSize: '1.75rem',

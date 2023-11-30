@@ -31,12 +31,16 @@ const Navbar = () => {
                 console.error(error)
             })
     }
+    const openYouTubeVideo = () => {
+        window.open('https://www.youtube.com/watch?v=TtdHWBoCU4I', '_blank');
+        
+    };
     const navLinks = <>
         <li className="text-yellow-600 font-semibold"><Link to='/'>Home</Link></li>
-        <li className="text-yellow-600 font-semibold"><Link to='/demo'>Watch Demo</Link></li>
+        <li onClick={openYouTubeVideo} className="text-yellow-600 font-semibold"><Link to='/'>Watch Demo</Link></li>
         <li className="text-yellow-600 font-semibold"><Link to='/signup'>Sign Up</Link></li>
         <li className="text-yellow-600 font-semibold"><Link to='/createStore'>Create Store</Link></li>
-        
+
         {
             user && isAdmin && <li className="text-yellow-600 font-semibold"><Link to='/dashboard/adminHome'>Dashboard</Link></li>
         }
@@ -44,6 +48,7 @@ const Navbar = () => {
             user && !isAdmin && <li className="text-yellow-600 font-semibold"><Link to='/dashboard/userHome'>Dashboard</Link></li>
         }
     </>
+
     return (
         <>
             <div className="navbar fixed z-10 w-[1200px] bg-opacity-10 bg-black">

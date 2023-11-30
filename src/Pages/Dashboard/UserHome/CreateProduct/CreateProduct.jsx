@@ -6,6 +6,7 @@ import useAxiosSecure from "../../../../Hooks/useAxiosSecure";
 import { MdProductionQuantityLimits } from "react-icons/md";
 import Swal from "sweetalert2";
 import useAuth from "../../../../Hooks/useAuth";
+import { useNavigate } from "react-router-dom";
 
 const image_hosting_key = import.meta.env.VITE_IMAGE_HOSTING_KEY;
 
@@ -15,17 +16,18 @@ const CreateProduct = () => {
     const { register, handleSubmit, reset } = useForm()
     const axiosPublic = useAxiosPublic();
     const axiosSecure = useAxiosSecure();
-    const {user} = useAuth();
+    const { user } = useAuth();
+    const navigate = useNavigate()
 
     const onSubmit = async (data) => {
         // image upload to imgbb and then get an url
-        const imageFile = {image: data.image[0]}
+        const imageFile = { image: data.image[0] }
         const res = await axiosPublic.post(image_hosting_api, imageFile, {
             headers: {
                 'content-type': 'multipart/form-data'
             }
         });
-        if(res.data.success && user.email){
+        if (res.data.success && user.email) {
             const productItem = {
                 name: data.name,
                 quantity: parseFloat(data.quantity),
@@ -35,23 +37,25 @@ const CreateProduct = () => {
                 discount: parseFloat(data.discount),
                 profit: parseFloat(data.profit),
                 image: res.data.data.display_url,
-                email: user.email
+                email: user.email,
+                price: parseFloat(data.price)
             }
             // 
             const productResponse = await axiosSecure.post('/products', productItem);
             console.log(productResponse.data);
-            if(productResponse.data.insertedId){
+            if (productResponse.data.insertedId) {
                 reset();
+                navigate('/dashboard/product')
                 Swal.fire({
                     position: "top-end",
                     icon: "success",
                     title: `${data.name} is added to the menu!`,
                     showConfirmButton: false,
                     timer: 1500
-                  });
+                });
             }
         }
-        
+
     };
 
 
@@ -120,6 +124,12 @@ const CreateProduct = () => {
                             </label>
                             <input {...register('image', { required: true })} type="file" className="file-input w-full max-w-xs" />
                         </div>
+                    </div>
+                    <div className="form-control w-full mb-2">
+                        <label className="label">
+                            <span className="label-text">Price</span>
+                        </label>
+                        <input {...register("price", { required: true })} type="number" placeholder="Price" className="input input-bordered w-full" />
                     </div>
                     <button className="btn btn-block bg-yellow-500 mt-5" >Add Product <MdProductionQuantityLimits></MdProductionQuantityLimits> </button>
                 </form>

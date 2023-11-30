@@ -43,8 +43,9 @@ const CreateStore = () => {
     return (
 
         <div className="mt-10">
+            <Helmet><title>Inventify-Hub | Create Store</title></Helmet>
             <SectionTitle heading='Create A Store' subHeading='Inventify HUB '></SectionTitle>
-            <Helmet>Inventify-Hub | Create Store</Helmet>
+            
             <div className="w-3/4 mx-auto bg-yellow-50 mt-6">
                 <form className="p-5" onSubmit={handleSubmit(onSubmit)}>
 

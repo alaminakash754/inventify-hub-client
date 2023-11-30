@@ -1,7 +1,7 @@
 import { NavLink, Outlet, useNavigate } from "react-router-dom";
 import Footer from "../Pages/Home/Shared/Footer/Footer";
 import { MdProductionQuantityLimits, MdPayments, MdSummarize } from "react-icons/md";
-import { FaHome, FaMoneyCheckAlt, FaShoppingCart, FaUsers } from "react-icons/fa";
+import { FaHome, FaMoneyCheckAlt,  FaUsers } from "react-icons/fa";
 import useAuth from "../Hooks/useAuth";
 import { RiLogoutCircleRFill } from "react-icons/ri";
 import { Helmet } from "react-helmet-async";
@@ -28,7 +28,7 @@ const Dashboard = () => {
     }
     return (
         <div>
-            <Helmet>Inventify-Hub | Dashboard</Helmet>
+            <Helmet><title>Inventify-Hub | Dashboard</title></Helmet>
             <div className="flex">
                 <div className="w-60 min-h-full bg-orange-50">
                     <ul className="menu">
@@ -40,17 +40,14 @@ const Dashboard = () => {
                                         <NavLink to='/dashboard/adminHome'><FaHome></FaHome> Admin Home</NavLink>
                                     </li>
                                     <li>
-                                        <NavLink to='/dashboard/manageShop'>
-                                            <FaShoppingCart></FaShoppingCart> Manage All Shop</NavLink>
+                                        <NavLink to='/dashboard/users'>
+                                            <FaUsers></FaUsers> All Users</NavLink>
                                     </li>
                                     <li>
                                         <NavLink to='/dashboard/sales'>
                                             <FcSalesPerformance></FcSalesPerformance> Manage All Sales</NavLink>
                                     </li>
-                                    <li>
-                                        <NavLink to='/dashboard/users'>
-                                            <FaUsers></FaUsers> All Users</NavLink>
-                                    </li>
+                                   
 
                             
                                 </>
@@ -72,7 +69,7 @@ const Dashboard = () => {
                                         </NavLink>
                                     </li>
                                     <li>
-                                        <NavLink to='/dashboard/salesCollection'>
+                                        <NavLink to='/dashboard/checkout'>
                                             <FaMoneyCheckAlt></FaMoneyCheckAlt> Check-Out
                                         </NavLink>
                                     </li>

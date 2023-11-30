@@ -3,14 +3,46 @@ import useProduct from "../../../Hooks/useProduct";
 import useShop from "../../../Hooks/useShop";
 import SectionTitle from "../../../components/SectionTitle/SectionTitle";
 import { MdDelete, MdEdit } from "react-icons/md";
+import Swal from "sweetalert2";
+import useAxiosSecure from "../../../Hooks/useAxiosSecure";
+import { Helmet } from "react-helmet-async";
 
 
 const ManagerCart = () => {
     const [shop] = useShop()
-    const [product] = useProduct();
+    const [product, refetch] = useProduct();
+    const axiosSecure = useAxiosSecure();
+
     // console.log(product);
+    const handleDeleteItem = (item) => {
+        console.log(item)
+        Swal.fire({
+            title: "Are you sure?",
+            text: "You won't be able to revert this!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, delete it!"
+          }).then(async(result) => {
+            if (result.isConfirmed) {
+                const res = await axiosSecure.delete(`/products/${item._id}`)
+                console.log(res.data);
+                if(res.data.deletedCount > 0){
+                    refetch();
+                    Swal.fire({
+                        title: "Deleted!",
+                        text: `${item.name} has been deleted successfully`,
+                        icon: "success"
+                      });
+                }
+              
+            }
+          });
+    }
     return (
         <div>
+            <Helmet><title>Inventify-Hub | Product management</title></Helmet>
             <SectionTitle heading={shop[0]?.shopName}></SectionTitle>
             <div className="mt-8 bg-yellow-50 rounded-lg">
                 <div className="overflow-x-auto">

@@ -3,9 +3,11 @@ import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 import SectionTitle from "../../../components/SectionTitle/SectionTitle";
 import Swal from "sweetalert2";
 import { FaUsers } from "react-icons/fa";
+import useShop from "../../../Hooks/useShop";
 
 
 const AllUsers = () => {
+    const [shop] = useShop()
     const axiosSecure = useAxiosSecure();
     const { data: users = [], refetch } = useQuery({
         queryKey: ['users'],
@@ -60,7 +62,7 @@ const AllUsers = () => {
                             users.map(user => <tr key={user._id}>
                                 <th>{user.name}</th>
                                 <td>{user.email}</td>
-                                <td></td>
+                                <td>{shop.shopName}</td>
                                 <td>
                                         { user.role === 'admin' ? 'Admin' : <button
                                             onClick={() => handleMakeAdmin(user)}

@@ -16,6 +16,8 @@ import AdminHome from "../Pages/Dashboard/AdminHome/AdminHome";
 import UserHome from "../Pages/Dashboard/UserHome/UserHome";
 import CreateProduct from "../Pages/Dashboard/UserHome/CreateProduct/CreateProduct";
 import UpdateProduct from "../Pages/Dashboard/UpdateProduct/UpdateProduct";
+import SalesCollection from "../Pages/Dashboard/UserHome/SalesCollection/SalesCollection";
+import Checkout from "../Pages/Dashboard/UserHome/Checkout/Checkout";
 
   export const router = createBrowserRouter([
     {
@@ -54,13 +56,21 @@ import UpdateProduct from "../Pages/Dashboard/UpdateProduct/UpdateProduct";
           element: <ManagerCart></ManagerCart>
         },
         {
+          path: 'salesCollection',
+          element:<SalesCollection></SalesCollection>
+        },
+        {
           path:'createProduct',
           element: <CreateProduct></CreateProduct>
         },
         {
+          path: 'checkout',
+          element:<Checkout></Checkout>
+        },
+        {
           path: 'updateProduct/:id',
           element: <UpdateProduct></UpdateProduct>,
-          loader: ({params}) => fetch(`http://localhost:5000/products/${params.id}`)
+          loader: ({params}) => fetch(`https://inventify-hub-server.vercel.app/products/${params.id}`)
         },
         // admin routes 
         {
